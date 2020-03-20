@@ -3,32 +3,31 @@ import styled from 'styled-components';
 
 
 
-const Box = ({state, clickMe, box, setTurn, turn}) => {
-const [player, setPlayer] = React.useState('-');
+const Box = ({handleReset, state, clickMe, box, setTurn, turn}) => {
+const [player, setPlayer] = React.useState(' ');
 
-
-const [color, setColor] = React.useState(false);
-const backgroundColor = color ? 'purple' : 'pink';
+console.log(state[box].reset)
+const [thecolor, setColor] = React.useState(false);
+const color = thecolor ? 'purple' : 'pink';
 
 const handlePlayer = () => {
 
     if (turn) {
-        let letter = state[box].x
+        let letter = 'X';
         setPlayer(letter)
         clickMe({box,letter})
-        setColor(!color)
+        setColor(!thecolor)
     }
     else {
-        let letter = state[box].o
+        let letter = 'O';
         setPlayer(letter)
         clickMe({box,letter})
-        setColor(color)
+        setColor(thecolor)
 
     }
 }
 
 // const handleBackground = (e) => {
-
 //     if (e.target.style.filter === 'grayscale(100%)') {
 //         e.target.style.filter = 'grayscale(100%)';
 //     } else {
@@ -36,18 +35,20 @@ const handlePlayer = () => {
 
 //     }
  
-
 // }
 return (
     <Btn 
     // onMouseEnter={handleBackground}
-    style={{backgroundColor}}
+    style={{color}}
     onClick={() => {
     handlePlayer();
     setTurn(!turn)
     }}>
+<div>
 
-        {player}
+    {state[box].reset ? (setPlayer(' '), handleReset({box}), player ) : player}
+    
+</div>
 
     
     </Btn>
@@ -61,16 +62,33 @@ export default Box;
 
 const Btn = styled.button`
 font-size: 3em;
-width: 100px;
+width: 200px;
 height: 100px;
 padding: 0;
 margin: 0;
+border: none;
+vertical-align: top;
+background: none;
+box-shadow: 2px 10px 20px 7px rgba(237,199,237,1);
 border-radius: 25px;
+
+@media only screen and (max-width: 450px) {
+    font-size: 5em;
+ 
+    padding: 0;
+    margin 0;
+    width: 100px;
+       
+        
+    }
+
+
+
 
 &:hover {
     cursor: pointer;
-    background-color: green;
-
+    background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+    transition: 1s ease all;
 } 
 
 
