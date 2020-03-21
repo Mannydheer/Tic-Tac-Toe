@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import GameBox from './GameBox';
 import SimpleAlerts from '../Alert';
 
 
@@ -40,9 +39,10 @@ const BoardProvider = ({ children }) => {
 
     //useState('Z') is the initial value of x... also the initial State. 
     const [state, dispatch] = React.useReducer(reducer, { ...InitialData })
-    const [turn, setTurn] = React.useState(true)
-    const [alert, setAlert] = React.useState(false)
-    const [visible, setVisible] = React.useState(false)
+    const [turn, setTurn] = React.useState(true);
+    const [alert, setAlert] = React.useState(false);
+    const [draw, setDraw] = React.useState(false);
+    const [visible, setVisible] = React.useState(false);
     const visibility = visible ? 'visible' : 'hidden';
 
 
@@ -79,7 +79,7 @@ const BoardProvider = ({ children }) => {
             let isClickedArray = Object.keys(state)
             let bool = isClickedArray.every(element => state[element].isClicked === true)
             if (bool) {
-                window.alert('DRAW')
+                setDraw(true)
                 setVisible(true)
             }
         }
@@ -130,7 +130,9 @@ const handleRestart = () => {
         
        <div>
          
-                {alert ? <div><SimpleAlerts turn={turn}></SimpleAlerts></div> : <div> </div>}
+                {alert ? <div><SimpleAlerts turn={turn} alert={alert}></SimpleAlerts></div> : <div> </div>}
+                {draw ? <div><SimpleAlerts draw={draw} alert={alert}></SimpleAlerts></div> : <div> </div>}
+
            
            
 
@@ -163,10 +165,17 @@ background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, 
 border-radius: 25px;
 font-size: 3em;
 color: white;
-position: absolute;
-bottom: 20%;
-right: 44%;
 font-family: 'Abril Fatface', cursive;
+
+
+@media only screen and (max-width: 450px) {
+    font-size: 5em;
+ 
+    padding: 0;
+    margin: 0;
+    
+        
+}
 
 
 &:hover {

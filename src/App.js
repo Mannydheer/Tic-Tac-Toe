@@ -1,8 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Board from './components/Board';
-import BoardProvider from './components/Board';
 import GameBox from './components/GameBox';
 import styled from 'styled-components';
 
@@ -31,7 +28,16 @@ text-align: center;
 
 const Game = styled.div`
 display: flex;
-justify-content: center
+justify-content: center;
+
+
+@media only screen and (max-width: 450px) {
+    padding: 0;
+    margin: 0;
+    width: 300px;
+    margin: 3em;
+       
+    }
 `
 
 
