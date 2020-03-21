@@ -3,15 +3,15 @@ import styled from 'styled-components';
 
 
 
-const Box = ({handleReset, state, clickMe, box, setTurn, turn}) => {
+const Box = ({state, clickMe, box, setTurn, turn}) => {
+
+let clicker = state[box].isClicked;
 const [player, setPlayer] = React.useState(' ');
 
-console.log(state[box].reset)
 const [thecolor, setColor] = React.useState(false);
 const color = thecolor ? 'purple' : 'pink';
 
 const handlePlayer = () => {
-
     if (turn) {
         let letter = 'X';
         setPlayer(letter)
@@ -22,41 +22,29 @@ const handlePlayer = () => {
         let letter = 'O';
         setPlayer(letter)
         clickMe({box,letter})
-        setColor(thecolor)
-
+        setColor(thecolor)  
     }
+    
 }
 
-// const handleBackground = (e) => {
-//     if (e.target.style.filter === 'grayscale(100%)') {
-//         e.target.style.filter = 'grayscale(100%)';
-//     } else {
-//         e.target.style.filter = 'grayscale(100%)';
-
-//     }
- 
-// }
-return (
-    <Btn 
-    // onMouseEnter={handleBackground}
-    style={{color}}
-    onClick={() => {
+const handleDoubleClicks = () => {
+if (clicker === undefined) {
     handlePlayer();
     setTurn(!turn)
+}
+}
+
+return (
+<Btn 
+    style={{color}}
+    onClick={() => {
+    handleDoubleClicks();
     }}>
-<div>
-
-    {state[box].reset ? (setPlayer(' '), handleReset({box}), player ) : player}
-    
-</div>
-
-    
-    </Btn>
+<Player>{player}</Player>
+</Btn>
 )
 
 }
-
-
 
 export default Box;
 
@@ -76,14 +64,10 @@ border-radius: 25px;
     font-size: 5em;
  
     padding: 0;
-    margin 0;
+    margin: 0;
     width: 100px;
-       
         
-    }
-
-
-
+}
 
 &:hover {
     cursor: pointer;
@@ -91,7 +75,11 @@ border-radius: 25px;
     transition: 1s ease all;
 } 
 
-
-
-
 `
+
+const Player = styled.span`
+
+font-family: 'Abril Fatface', cursive;
+`
+
+
