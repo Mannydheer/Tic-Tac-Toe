@@ -18,7 +18,7 @@ function App() {
     </Route>
     <Route path="/game">
     <FullBoard>
-      <Title>TIC-TAC-TOE</Title>
+      <Title>TIC-TAC-ALIEN</Title>
       <Game>
         <GameBox></GameBox>
       </Game>
@@ -26,38 +26,24 @@ function App() {
     </Route>
   </Router>
     
-
-  
-    
   );
 }
 
 export default App;
 
-
-
 const FullBoard = styled.div`
-
-
-
 text-align: center;
 `
-
 const Game = styled.div`
 display: flex;
 justify-content: center;
 
 
 @media only screen and (max-width: 450px) {
-    padding: 0;
-    margin: 0;
-    width: 300px;
-    margin: 3em;
-       
-    }
+    margin-top: 60px;
+        
+}
 `
-
-
 const Title = styled.div`
 font-size: 2em;
 font-family: 'Abril Fatface', cursive;
@@ -69,5 +55,16 @@ padding: 1em;
 background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
 display: flex;
 justify-content: center;
+
+
+
+@media only screen and (max-width: 450px) {
+    font-size: 3em;
+ 
+    padding: 0;
+    margin: 0;
+    
+        
+}
 `
 

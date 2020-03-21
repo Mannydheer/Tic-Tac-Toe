@@ -22,7 +22,6 @@ const InitialData = {
     box8: {x, o},
 }
 
-
 const reducer = (state, action) => {
     switch (action.type) {
         case 'change-click-me': {
@@ -34,9 +33,6 @@ const reducer = (state, action) => {
         }
     }
 }
-
-
-
 
 const BoardProvider = ({ children }) => {
 
@@ -137,7 +133,8 @@ const handleRestart = () => {
                     handleCharacter,
                     turn,
                     x,
-                    o
+                    o,
+                    alert
                 
 
                 }
@@ -145,15 +142,13 @@ const handleRestart = () => {
         }>
             {children}
 
+        <Reset>
+
+            {alert ? <div><SimpleAlerts x={x} o={o} turn={turn} alert={alert}></SimpleAlerts></div> : <div> </div>}
+            {draw ? <div><SimpleAlerts x={x} o={o} draw={draw} alert={alert}></SimpleAlerts></div> : <div> </div>}
+
         
-       <div>
-         
-                {alert ? <div><SimpleAlerts x={x} o={o} turn={turn} alert={alert}></SimpleAlerts></div> : <div> </div>}
-                {draw ? <div><SimpleAlerts x={x} o={o} draw={draw} alert={alert}></SimpleAlerts></div> : <div> </div>}
-
-           
-           
-
+       <RestartDiv>
             <RestartButton
                     // style={{ visibility }}
                     onClick={() => {
@@ -163,7 +158,9 @@ const handleRestart = () => {
             </RestartButton>
             {/* <Back onClick={goBack}>Back</Back> */}
 
-        </div>
+        </RestartDiv>
+
+        </Reset>
 
 
         </Board.Provider>
@@ -180,21 +177,36 @@ export default BoardProvider;
 
 
 
-const RestartButton = styled.div`
-background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+const RestartButton = styled.button`
 border-radius: 25px;
 font-size: 3em;
-color: white;
+color: pink;
 font-family: 'Abril Fatface', cursive;
 
-
-
-
+ 
+transition: all 0.2s ease;
+margin: auto;
 
 &:hover {
     cursor: pointer;
+    background-color: pink;
+    color: white;
 }
 `
+const RestartDiv = styled.div`
 
+display:flex;
+justify-content: center;
+
+`
+
+const Reset = styled.div`
+@media only screen and (max-width: 450px) {
+
+margin-top: 120px;
+       
+}
+
+`
 
 

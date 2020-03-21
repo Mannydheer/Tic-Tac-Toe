@@ -10,7 +10,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     '& > * + *': {
-      marginTop: theme.spacing(5),
+      marginTop: theme.spacing(1),
+      
     },
     
   },
@@ -27,12 +28,12 @@ export default function SimpleAlerts({turn, draw, alert, x , o}) {
 
     
     <AlertMessage className={classes.root}>
-        {turn === true && draw === undefined ? <Alert style={{backgroundImage: 'linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%)', fontSize:'1em'}}>
+        {turn === true && draw === undefined ? <Alert style={{backgroundColor: 'white', fontSize:'1em',}}>
         {o}  is the Winner
-      </Alert> : turn === false && draw === undefined ? <Alert style={{backgroundImage: 'linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%)', fontSize:'1em'}}>
+      </Alert> : turn === false && draw === undefined ? <Alert style={{backgroundColor: 'white', fontSize:'1em'}}>
         {x}  is the Winner
       </Alert> : <div></div>}
-      {draw === true && alert === false ? <Alert style={{backgroundImage: 'linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%)', fontSize:'1em'}}>
+      {draw === true && alert === false ? <Alert style={{backgroundColor: 'white', fontSize:'1em'}}>
         Draw
       </Alert> : <div></div>}  
 
@@ -42,6 +43,8 @@ export default function SimpleAlerts({turn, draw, alert, x , o}) {
 }
 
 const AlertMessage = styled.div`
+
+
 
 
 @media only screen and (max-width: 450px) {

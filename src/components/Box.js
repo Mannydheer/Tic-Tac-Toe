@@ -3,13 +3,10 @@ import styled from 'styled-components';
 import { Board } from './Board';
 
 
-// clickMe,setTurn,turn
-
-
 const Box = ({box}) => {
 
    const {state,
-    actions: {clickMe,setTurn,turn, x, o} } = React.useContext(Board);
+    actions: {clickMe,setTurn,turn, x, o, alert} } = React.useContext(Board);
 
 let clicker = state[box].isClicked;
 const [player, setPlayer] = React.useState(' ');
@@ -42,7 +39,8 @@ if (clicker === undefined) {
 
 
 return (
-<Btn 
+<Btn
+    disabled={alert}
     style={{color}}
     onClick={() => {
     handleDoubleClicks();
