@@ -1,9 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Board } from './Board';
 
 
+// clickMe,setTurn,turn
 
-const Box = ({state, clickMe, box, setTurn, turn}) => {
+
+const Box = ({box}) => {
+
+   const {state,
+    actions: {clickMe,setTurn,turn} } = React.useContext(Board);
 
 let clicker = state[box].isClicked;
 const [player, setPlayer] = React.useState(' ');
@@ -59,6 +65,7 @@ vertical-align: top;
 background: none;
 box-shadow: 2px 10px 20px 7px rgba(237,199,237,1);
 border-radius: 25px;
+outline: none;
 
 @media only screen and (max-width: 450px) {
     font-size: 5em;

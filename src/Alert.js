@@ -1,33 +1,42 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Alert from '@material-ui/lab/Alert';
+// import Alert from '@material-ui/lab/Alert';
+import { Alert, AlertTitle } from '@material-ui/lab';
+
+import styled from 'styled-components';
 
 const useStyles = makeStyles(theme => ({
+
   root: {
-    width: '100%',
+    width: '20%',
     '& > * + *': {
-      marginTop: theme.spacing(2),
+      marginTop: theme.spacing(5),
     },
+    
   },
 }));
 
-export default function SimpleAlerts() {
+export default function SimpleAlerts({turn}) {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Alert variant="filled" severity="error">
-        This is an error alert — check it out!
-      </Alert>
-      <Alert variant="filled" severity="warning">
-        This is a warning alert — check it out!
-      </Alert>
-      <Alert variant="filled" severity="info">
-        This is an info alert — check it out!
-      </Alert>
-      <Alert variant="filled" severity="success">
-        This is a success alert — check it out!
-      </Alert>
-    </div>
+
+    
+    <AlertMessage className={classes.root}>
+        {turn ? <Alert style={{backgroundImage: 'linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%)', fontSize:'2em'}}>
+        O is the Winner
+      </Alert> : <Alert style={{backgroundImage: 'linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%)', fontSize:'2em'}}>
+        X is the Winner
+      </Alert>  }  
+
+    </AlertMessage>
   );
 }
+
+const AlertMessage = styled.div`
+position: absolute;
+bottom: 10%;
+right: 41%;
+
+`
+
