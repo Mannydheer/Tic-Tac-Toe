@@ -9,7 +9,7 @@ import { Board } from './Board';
 const Box = ({box}) => {
 
    const {state,
-    actions: {clickMe,setTurn,turn} } = React.useContext(Board);
+    actions: {clickMe,setTurn,turn, x, o} } = React.useContext(Board);
 
 let clicker = state[box].isClicked;
 const [player, setPlayer] = React.useState(' ');
@@ -19,13 +19,13 @@ const color = thecolor ? 'purple' : 'pink';
 
 const handlePlayer = () => {
     if (turn) {
-        let letter = 'X';
+        let letter = x;
         setPlayer(letter)
         clickMe({box,letter})
         setColor(!thecolor)
     }
     else {
-        let letter = 'O';
+        let letter = o;
         setPlayer(letter)
         clickMe({box,letter})
         setColor(thecolor)  
@@ -39,6 +39,7 @@ if (clicker === undefined) {
     setTurn(!turn)
 }
 }
+
 
 return (
 <Btn 

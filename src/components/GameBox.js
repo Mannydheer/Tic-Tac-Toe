@@ -4,13 +4,14 @@ import Box from './Box';
 import { Board } from './Board';
 
 
+
 const GameBox = () => {
 
     const {state} = React.useContext(Board);
 
     let boxValues = Object.keys(state)
     return ( 
-        <React.Fragment>
+        <FlexBack>
             <BoardStyling>
 
             {boxValues.map(box => {
@@ -19,8 +20,9 @@ const GameBox = () => {
         )
             })}
             </BoardStyling>
+           
 
-        </React.Fragment>
+        </FlexBack>
 
     )
 }
@@ -32,8 +34,13 @@ const BoardStyling = styled.div`
 padding: 0;
 margin: 0;
 width:600px;
+`
+
+const FlexBack = styled.div`
 
 
 `
+
+
 
 

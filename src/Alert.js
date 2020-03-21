@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SimpleAlerts({turn, draw, alert}) {
+export default function SimpleAlerts({turn, draw, alert, x , o}) {
   const classes = useStyles();
   console.log(draw, 'draw')
   console.log(turn, 'turn')
@@ -28,9 +28,9 @@ export default function SimpleAlerts({turn, draw, alert}) {
     
     <AlertMessage className={classes.root}>
         {turn === true && draw === undefined ? <Alert style={{backgroundImage: 'linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%)', fontSize:'1em'}}>
-        O is the Winner
+        {o}  is the Winner
       </Alert> : turn === false && draw === undefined ? <Alert style={{backgroundImage: 'linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%)', fontSize:'1em'}}>
-        X is the Winner
+        {x}  is the Winner
       </Alert> : <div></div>}
       {draw === true && alert === false ? <Alert style={{backgroundImage: 'linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%)', fontSize:'1em'}}>
         Draw

@@ -2,18 +2,33 @@ import React from 'react';
 import './App.css';
 import GameBox from './components/GameBox';
 import styled from 'styled-components';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Home from './components/Home';
+
+
 
 
 function App() {
 
-
   return (
+
+    <Router>
+    <Route exact path="/">
+      <Home/>
+    </Route>
+    <Route path="/game">
     <FullBoard>
       <Title>TIC-TAC-TOE</Title>
       <Game>
         <GameBox></GameBox>
       </Game>
     </FullBoard>
+    </Route>
+  </Router>
+    
+
+  
+    
   );
 }
 
@@ -22,6 +37,8 @@ export default App;
 
 
 const FullBoard = styled.div`
+
+
 
 text-align: center;
 `

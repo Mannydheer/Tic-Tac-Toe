@@ -1,22 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import SimpleAlerts from '../Alert';
+import { useHistory } from 'react-router-dom';
+
 
 
 
 export const Board = React.createContext();
-
+let o = '👾';
+let x = null;
 
 const InitialData = {
-    box0: {},
-    box1: {},
-    box2: {},
-    box3: {},
-    box4: {},
-    box5: {},
-    box6: {},
-    box7: {},
-    box8: {},
+    box0: {x, o},
+    box1: {x, o},
+    box2: {x, o},
+    box3: {x, o},
+    box4: {x, o},
+    box5: {x, o},
+    box6: {x, o},
+    box7: {x, o},
+    box8: {x, o},
 }
 
 
@@ -37,42 +40,44 @@ const reducer = (state, action) => {
 
 const BoardProvider = ({ children }) => {
 
+
     //useState('Z') is the initial value of x... also the initial State. 
     const [state, dispatch] = React.useReducer(reducer, { ...InitialData })
     const [turn, setTurn] = React.useState(true);
     const [alert, setAlert] = React.useState(false);
     const [draw, setDraw] = React.useState(false);
     const [visible, setVisible] = React.useState(false);
+    const [character, setCharacter] = React.useState(null)
     const visibility = visible ? 'visible' : 'hidden';
 
-
-
+    let x = character;
+    console.log(x,' X INSIDE BOARD')
     React.useEffect(() => {
 
-        if (state.box0.selected === 'O' && state.box1.selected === 'O' && state.box2.selected === 'O' || state.box0.selected === 'X' && state.box1.selected === 'X' && state.box2.selected === 'X') {
+        if (state.box0.selected === o && state.box1.selected === o && state.box2.selected === o || state.box0.selected === x && state.box1.selected === x && state.box2.selected === x) {
             handleWinner(turn, setVisible, visible, setAlert);
         }
-        else if (state.box3.selected === 'O' && state.box4.selected === 'O' && state.box5.selected === 'O' || state.box3.selected === 'X' && state.box4.selected === 'X' && state.box5.selected === 'X') {
+        else if (state.box3.selected === o && state.box4.selected === o && state.box5.selected === o || state.box3.selected === x && state.box4.selected === x && state.box5.selected === x) {
             handleWinner(turn, setVisible, visible, setAlert);
         }
-        else if (state.box6.selected === 'O' && state.box7.selected === 'O' && state.box8.selected === 'O' || state.box6.selected === 'X' && state.box7.selected === 'X' && state.box8.selected === 'X') {
+        else if (state.box6.selected === o && state.box7.selected === o && state.box8.selected === o || state.box6.selected === x && state.box7.selected === x && state.box8.selected === x) {
             handleWinner(turn, setVisible, visible, setAlert);
         }
         //horizontal
-        else if (state.box0.selected === 'O' && state.box3.selected === 'O' && state.box6.selected === 'O' || state.box0.selected === 'X' && state.box3.selected === 'X' && state.box6.selected === 'X') {
+        else if (state.box0.selected === o && state.box3.selected === o && state.box6.selected === o || state.box0.selected === x && state.box3.selected === x && state.box6.selected === x) {
             handleWinner(turn, setVisible, visible, setAlert);
         }
-        else if (state.box1.selected === 'O' && state.box4.selected === 'O' && state.box7.selected === 'O' || state.box1.selected === 'X' && state.box4.selected === 'X' && state.box7.selected === 'X') {
+        else if (state.box1.selected === o && state.box4.selected === o && state.box7.selected === o || state.box1.selected === x && state.box4.selected === x && state.box7.selected === x) {
             handleWinner(turn, setVisible, visible, setAlert);
         }
-        else if (state.box2.selected === 'O' && state.box5.selected === 'O' && state.box8.selected === 'O' || state.box2.selected === 'X' && state.box5.selected === 'X' && state.box8.selected === 'X') {
+        else if (state.box2.selected === o && state.box5.selected === o && state.box8.selected === o || state.box2.selected === x && state.box5.selected === x && state.box8.selected === x) {
             handleWinner(turn, setVisible, visible, setAlert);
         }
         //diagonal
-        else if (state.box0.selected === 'O' && state.box4.selected === 'O' && state.box8.selected === 'O' || state.box0.selected === 'X' && state.box4.selected === 'X' && state.box8.selected === 'X') {
+        else if (state.box0.selected === o && state.box4.selected === o && state.box8.selected === o || state.box0.selected === x && state.box4.selected === x && state.box8.selected === x) {
             handleWinner(turn, setVisible, visible, setAlert);
         }
-        else if (state.box2.selected === 'O' && state.box4.selected === 'O' && state.box6.selected === 'O' || state.box2.selected === 'X' && state.box4.selected === 'X' && state.box6.selected === 'X') {
+        else if (state.box2.selected === o && state.box4.selected === o && state.box6.selected === o || state.box2.selected === x && state.box4.selected === x && state.box6.selected === x) {
             handleWinner(turn, setVisible, visible, setAlert);
         }
         else {
@@ -93,6 +98,13 @@ const BoardProvider = ({ children }) => {
         })
     }
 
+    const handleCharacter = (e) => {
+        e.preventDefault();
+        let selectedCharacter = e.target.innerHTML
+        setCharacter(selectedCharacter);
+        
+        }
+
 const handleWinner = () => {
     
     if (turn) {
@@ -107,7 +119,8 @@ const handleWinner = () => {
 }
 
 const handleRestart = () => {
-    window.location.reload();
+    window.location.pathname = '/'
+
 }
 
     return (
@@ -120,7 +133,12 @@ const handleRestart = () => {
                 actions: {
                     setTurn,
                     clickMe,
-                    turn
+                    handleRestart,
+                    handleCharacter,
+                    turn,
+                    x,
+                    o
+                
 
                 }
             }
@@ -130,19 +148,21 @@ const handleRestart = () => {
         
        <div>
          
-                {alert ? <div><SimpleAlerts turn={turn} alert={alert}></SimpleAlerts></div> : <div> </div>}
-                {draw ? <div><SimpleAlerts draw={draw} alert={alert}></SimpleAlerts></div> : <div> </div>}
+                {alert ? <div><SimpleAlerts x={x} o={o} turn={turn} alert={alert}></SimpleAlerts></div> : <div> </div>}
+                {draw ? <div><SimpleAlerts x={x} o={o} draw={draw} alert={alert}></SimpleAlerts></div> : <div> </div>}
 
            
            
 
             <RestartButton
-                    style={{ visibility }}
+                    // style={{ visibility }}
                     onClick={() => {
                         handleRestart();
                     }}>
                     RESTART
             </RestartButton>
+            {/* <Back onClick={goBack}>Back</Back> */}
+
         </div>
 
 
@@ -168,19 +188,13 @@ color: white;
 font-family: 'Abril Fatface', cursive;
 
 
-@media only screen and (max-width: 450px) {
-    font-size: 5em;
- 
-    padding: 0;
-    margin: 0;
-    
-        
-}
+
 
 
 &:hover {
     cursor: pointer;
 }
 `
+
 
 
