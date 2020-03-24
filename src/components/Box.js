@@ -3,75 +3,74 @@ import styled from 'styled-components';
 import { Board } from './Board';
 
 
-const Box = ({box}) => {
+const Box = ({ box }) => {
 
-   const {state,
-    actions: {clickMe,setTurn,turn, x, o, alert} } = React.useContext(Board);
+    const { state,
+        actions: { clickMe, setTurn, turn, x, o, alert } } = React.useContext(Board);
 
-let clicker = state[box].isClicked;
-const [player, setPlayer] = React.useState(' ');
+    let clicker = state[box].isClicked;
+    const [player, setPlayer] = React.useState(' ');
 
-const [thecolor, setColor] = React.useState(false);
-const color = thecolor ? 'purple' : 'pink';
+    const [thecolor, setColor] = React.useState(false);
+    const color = thecolor ? 'purple' : 'pink';
 
-const handlePlayer = () => {
-    if (turn) {
-        let letter = x;
-        setPlayer(letter)
-        clickMe({box,letter})
-        setColor(!thecolor)
+
+    //FUNCTIONS
+    const handlePlayer = () => {
+        if (turn) {
+            let letter = x;
+            setPlayer(letter)
+            clickMe({ box, letter })
+            setColor(!thecolor)
+        }
+        else {
+            let letter = o;
+            setPlayer(letter)
+            clickMe({ box, letter })
+            setColor(thecolor)
+        }
+
     }
-    else {
-        let letter = o;
-        setPlayer(letter)
-        clickMe({box,letter})
-        setColor(thecolor)  
+    const handleDoubleClicks = () => {
+        if (clicker === undefined) {
+            handlePlayer();
+            setTurn(!turn)
+        }
     }
-    
-}
-
-const handleDoubleClicks = () => {
-if (clicker === undefined) {
-    handlePlayer();
-    setTurn(!turn)
-}
-}
-
-
-return (
-<Btn
-    disabled={alert}
-    style={{color}}
-    onClick={() => {
-    handleDoubleClicks();
-    }}>
-<Player>{player}</Player>
-</Btn>
-)
+    //render
+    return (
+        <Btn
+            disabled={alert}
+            style={{ color }}
+            onClick={() => {
+                handleDoubleClicks();
+            }}>
+            <Player>{player}</Player>
+        </Btn>
+    )
 
 }
 
 export default Box;
 
 const Btn = styled.button`
-font-size: 3em;
+font-size: 5em;
 width: 200px;
-height: 100px;
+height: 200px;
 padding: 0;
 margin: 0;
 border: none;
 vertical-align: top;
 background: none;
-box-shadow: 2px 10px 20px 7px rgba(237,199,237,1);
-border-radius: 25px;
+border: solid black 1px;
 outline: none;
 
 @media only screen and (max-width: 450px) {
     font-size: 5em;
- 
     padding: 0;
     margin: 0;
     width: 100px;
+    height: 100px;
         
 }
 

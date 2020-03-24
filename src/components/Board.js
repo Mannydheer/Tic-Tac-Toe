@@ -11,15 +11,15 @@ let o = '👾';
 let x = null;
 
 const InitialData = {
-    box0: {x, o},
-    box1: {x, o},
-    box2: {x, o},
-    box3: {x, o},
-    box4: {x, o},
-    box5: {x, o},
-    box6: {x, o},
-    box7: {x, o},
-    box8: {x, o},
+    box0: { x, o },
+    box1: { x, o },
+    box2: { x, o },
+    box3: { x, o },
+    box4: { x, o },
+    box5: { x, o },
+    box6: { x, o },
+    box7: { x, o },
+    box8: { x, o },
 }
 
 const reducer = (state, action) => {
@@ -45,9 +45,9 @@ const BoardProvider = ({ children }) => {
     const [visible, setVisible] = React.useState(false);
     const [character, setCharacter] = React.useState(null)
     const visibility = visible ? 'visible' : 'hidden';
-
+    console.log(state);
     let x = character;
-    console.log(x,' X INSIDE BOARD')
+    console.log(x, ' X INSIDE BOARD')
     React.useEffect(() => {
 
         if (state.box0.selected === o && state.box1.selected === o && state.box2.selected === o || state.box0.selected === x && state.box1.selected === x && state.box2.selected === x) {
@@ -86,7 +86,6 @@ const BoardProvider = ({ children }) => {
         }
     }, [state])
 
-
     const clickMe = (box) => {
         dispatch({
             type: 'change-click-me',
@@ -94,35 +93,29 @@ const BoardProvider = ({ children }) => {
         })
     }
 
+    //handlers.
     const handleCharacter = (e) => {
         e.preventDefault();
         let selectedCharacter = e.target.innerHTML
         setCharacter(selectedCharacter);
-        
-        }
-
-const handleWinner = () => {
-    
-    if (turn) {
-        setVisible(true)
-        setAlert(true)
-
-    } else {
-        setVisible(true)
-        setAlert(true)
-
     }
-}
 
-const handleRestart = () => {
-    window.location.pathname = '/'
+    const handleWinner = () => {
+        if (turn) {
+            setVisible(true)
+            setAlert(true)
 
-}
+        } else {
+            setVisible(true)
+            setAlert(true)
+        }
+    }
+    const handleRestart = () => {
+        window.location.pathname = '/'
+    }
 
+    //render
     return (
-
-
-
         <Board.Provider value={
             {
                 state,
@@ -135,34 +128,23 @@ const handleRestart = () => {
                     x,
                     o,
                     alert
-                
-
                 }
             }
         }>
             {children}
 
-        <Reset>
-
-            {alert ? <div><SimpleAlerts x={x} o={o} turn={turn} alert={alert}></SimpleAlerts></div> : <div> </div>}
-            {draw ? <div><SimpleAlerts x={x} o={o} draw={draw} alert={alert}></SimpleAlerts></div> : <div> </div>}
-
-        
-       <RestartDiv>
-            <RestartButton
-                    // style={{ visibility }}
-                    onClick={() => {
-                        handleRestart();
-                    }}>
-                    RESTART
+            <Reset>
+                {alert ? <div><SimpleAlerts x={x} o={o} turn={turn} alert={alert}></SimpleAlerts></div> : <div> </div>}
+                {draw ? <div><SimpleAlerts x={x} o={o} draw={draw} alert={alert}></SimpleAlerts></div> : <div> </div>}
+                <RestartDiv>
+                    <RestartButton
+                        onClick={() => {
+                            handleRestart();
+                        }}>
+                        RESTART
             </RestartButton>
-            {/* <Back onClick={goBack}>Back</Back> */}
-
-        </RestartDiv>
-
-        </Reset>
-
-
+                </RestartDiv>
+            </Reset>
         </Board.Provider>
 
     )
@@ -171,15 +153,10 @@ const handleRestart = () => {
 export default BoardProvider;
 
 
-
-
-
-
-
-
+//STYLING.
 const RestartButton = styled.button`
 border-radius: 25px;
-font-size: 3em;
+font-size: 2em;
 color: pink;
 font-family: 'Abril Fatface', cursive;
 

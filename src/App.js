@@ -11,21 +11,19 @@ import Home from './components/Home';
 function App() {
 
   return (
-
     <Router>
-    <Route exact path="/">
-      <Home/>
-    </Route>
-    <Route path="/game">
-    <FullBoard>
-      <Title>TIC-TAC-ALIEN</Title>
-      <Game>
-        <GameBox></GameBox>
-      </Game>
-    </FullBoard>
-    </Route>
-  </Router>
-    
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route path="/game">
+        <FullBoard>
+          <Title>TIC-TAC-ALIEN</Title>
+          <Game>
+            <GameBox></GameBox>
+          </Game>
+        </FullBoard>
+      </Route>
+    </Router>
   );
 }
 
@@ -47,10 +45,10 @@ justify-content: center;
 const Title = styled.div`
 font-size: 2em;
 font-family: 'Abril Fatface', cursive;
-margin: 2em;
+margin: 1em;
 color: white;
 border-radius: 25px; 
-padding: 1em;
+padding: 0.5em;
 
 background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
 display: flex;

@@ -7,23 +7,23 @@ import { Board } from './Board';
 
 const GameBox = () => {
 
-    const {state,
-    actions: {x, o}} = React.useContext(Board);
+    const { state,
+        actions: { x, o } } = React.useContext(Board);
 
     let boxValues = Object.keys(state)
-    return ( 
+    return (
         <FlexBack>
             <Vs>{x} VS {o}</Vs>
-          
+
             <BoardStyling>
 
-            {boxValues.map(box => {
-               return (
-            <Box key={box} box={box}></Box>
-        )
-            })}
+                {boxValues.map(box => {
+                    return (
+                        <Box key={box} box={box}></Box>
+                    )
+                })}
             </BoardStyling>
-           
+
 
         </FlexBack>
 
@@ -37,6 +37,7 @@ const BoardStyling = styled.div`
 padding: 0;
 margin: 0;
 width:600px;
+height: 600px;
 
 @media only screen and (max-width: 450px) {
     
@@ -52,7 +53,7 @@ const FlexBack = styled.div`
 
 `
 const Vs = styled.div`
-font-size: 4em;
+font-size: 3em;
 font-family: 'Abril Fatface', cursive;
 
 @media only screen and (max-width: 450px) {

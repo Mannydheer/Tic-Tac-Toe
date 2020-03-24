@@ -4,28 +4,28 @@ import styled from 'styled-components';
 import { Board } from './Board';
 
 const Home = () => {
-    let gorilla = '🦍';
-    let unicorn = '🦄';
-    let dragon =  '🐉';
-    let monkey = '🐵';
-   
+  let gorilla = '🦍';
+  let unicorn = '🦄';
+  let dragon = '🐉';
+  let monkey = '🐵';
 
-    const {
-        actions: {x, o, handleCharacter} } = React.useContext(Board);
-    const [selectedC, setSelectedC] = React.useState(null);
-    const [start, setStart] = React.useState(false);
+
+  const {
+    actions: { x, o, handleCharacter } } = React.useContext(Board);
+  const [selectedC, setSelectedC] = React.useState(null);
+  const [start, setStart] = React.useState(false);
   return (
     <Wrapper>
-        <Selected><Character>{selectedC}</Character></Selected>
-      <Title>TIC-TAC-ALIEN</Title>  
+      <Selected><Character>{selectedC}</Character></Selected>
+      <Title>TIC-TAC-ALIEN</Title>
       <div>Choose A Character</div>
-<Characters>
-      <Btn onClick={(e) => {handleCharacter(e); setStart(true); setSelectedC(gorilla)}}>{gorilla}</Btn>
-      <Btn onClick={(e) => {handleCharacter(e); setStart(true); setSelectedC(unicorn)}}>{unicorn}</Btn>
-      <Btn onClick={(e) => {handleCharacter(e); setStart(true); setSelectedC(dragon)}}>{dragon}</Btn>
-      <Btn onClick={(e) => {handleCharacter(e); setStart(true); setSelectedC(monkey)}}>{monkey}</Btn>
-</Characters>
-{start ? <Start><Link to="/game"> 🔥 Start Game 🔥 </Link></Start> : <span></span> }
+      <Characters>
+        <Btn onClick={(e) => { handleCharacter(e); setStart(true); setSelectedC(gorilla) }}>{gorilla}</Btn>
+        <Btn onClick={(e) => { handleCharacter(e); setStart(true); setSelectedC(unicorn) }}>{unicorn}</Btn>
+        <Btn onClick={(e) => { handleCharacter(e); setStart(true); setSelectedC(dragon) }}>{dragon}</Btn>
+        <Btn onClick={(e) => { handleCharacter(e); setStart(true); setSelectedC(monkey) }}>{monkey}</Btn>
+      </Characters>
+      {start ? <Start><Link to="/game"> 🔥 Start Game 🔥 </Link></Start> : <span></span>}
     </Wrapper>
   );
 };
@@ -41,8 +41,8 @@ const Selected = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 4em;
-  margin-bottom: 50px;
+  font-size: 3em;
+  margin-bottom: 30px;
   font-family: 'Abril Fatface', cursive;
   @media only screen and (max-width: 450px) {
     font-size: 24px;
