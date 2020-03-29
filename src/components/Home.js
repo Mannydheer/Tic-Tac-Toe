@@ -25,7 +25,7 @@ const Home = () => {
         <Btn onClick={(e) => { handleCharacter(e); setStart(true); setSelectedC(dragon) }}>{dragon}</Btn>
         <Btn onClick={(e) => { handleCharacter(e); setStart(true); setSelectedC(monkey) }}>{monkey}</Btn>
       </Characters>
-      {start ? <Start><Link to="/game"> 🔥 Start Game 🔥 </Link></Start> : <span></span>}
+      <Start><Link to="/game"> 🔥 Start Game 🔥 </Link></Start>
     </Wrapper>
   );
 };

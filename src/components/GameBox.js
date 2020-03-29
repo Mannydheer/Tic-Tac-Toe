@@ -36,8 +36,8 @@ export default GameBox;
 const BoardStyling = styled.div`
 padding: 0;
 margin: 0;
-width:600px;
-height: 600px;
+width:300px;
+height: 300px;
 
 @media only screen and (max-width: 450px) {
     

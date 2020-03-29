@@ -55,8 +55,8 @@ export default Box;
 
 const Btn = styled.button`
 font-size: 5em;
-width: 200px;
-height: 200px;
+width: 100px;
+height: 100px;
 padding: 0;
 margin: 0;
 border: none;
